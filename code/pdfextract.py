@@ -13,7 +13,7 @@ def pt(filename):
         if "ACCOUNT MONTH" in i:		# <4>
                 print filename, a[j+2]	# <5>
                 return a[j+2]			# <6>
-                
+
 results = pool.map(pt, files)			# <7>
 
 df = pd.DataFrame( {'filename':files,'month':results})
