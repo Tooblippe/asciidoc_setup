@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.1">
 <meta name="author" content="Tobie Nortje">
-<title>My AsciiDoc setup</title>
+<title>Python in the Workplace</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -477,20 +477,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1><strong>My AsciiDoc setup</strong></h1>
+<h1>Python in the Workplace</h1>
 <div class="details">
 <span id="author" class="author">Tobie Nortje</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_writing_toolchain">Writing toolchain</a></li>
 <li><a href="#_asciidoc_processor">AsciiDoc processor</a></li>
 <li><a href="#_text_editor">Text editor</a></li>
 <li><a href="#_syntax_highlighting">Syntax highlighting</a></li>
 <li><a href="#_live_rendering_in_your_browser">Live rendering in your browser</a></li>
 <li><a href="#_asciidoctor_cheatsheet">AsciiDoctor cheatsheet</a></li>
 <li><a href="#_pdf_generation">PDF generation</a></li>
-<li><a href="#_epub_generation">EPUB generation</a></li>
+<li><a href="#_epub_generation">EPUB generation</a>
+<ul class="sectlevel2">
+<li><a href="#_install_asciidoctor_epub3">Install asciidoctor-epub3</a></li>
+<li><a href="#_wrap_the_book_in_a_spine">Wrap the book in a spine</a></li>
+<li><a href="#_e_book_front_cover_image">E-book front cover image</a></li>
+<li><a href="#_e_book_avatar">E-book avatar</a></li>
+</ul>
+</li>
 <li><a href="#_makefile">Makefile</a></li>
 <li><a href="#_custom_stylesheet">Custom stylesheet</a></li>
 <li><a href="#_conditional_compilation">Conditional compilation</a></li>
@@ -498,39 +506,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_writing_toolchain">Writing toolchain</h2>
 <div class="sectionbody">
 <div class="sidebarblock">
 <div class="content">
-<div class="title">Contents</div>
+<div class="title">In this chapter</div>
 <div class="paragraph">
-<p>This post contains some notes on my AsciiDoc setup. Whilst it is realtively
+<p>This chapter contains some notes on my AsciiDoc setup. Whilst it is realtively
 easy to set everything up I found it quite frustrating to find the info
 needed that would supply a good toolchain from markup to html, pdf, epub etc.
 I decided to start documenting my progress. Maybe this will be usefull to
 someone out there. Dont get me wrong all the tools exist but figuring out
 how they all work, play together and how to style the different output types
-proved hard for me to figure out.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Others have done this</div>
-<div class="paragraph">
-<p>There are a couple of posts that I found were writers have tried to document
-their respective experiences with setting up the toolchain.
-Here are some of the more notable ones:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>This guy</p>
-</li>
-<li>
-<p>This oak</p>
-</li>
-</ol>
+proved hard for me to figure out. I thought it best to document everything to ensure that I can repeat the whole setup.</p>
 </div>
 </div>
 </div>
@@ -551,7 +540,7 @@ Here are some of the more notable ones:</p>
 <p>I am using Submlime text with the <a href="https://github.com/SublimeText/AsciiDoc">AsciiDoc plugin</a></p>
 </div>
 <div class="paragraph">
-<p>Create a new file, save it as <code>&lt;filename&gt;.asc</code></p>
+<p>To use it is simple. Just create a new file, save it as <code>&lt;filename&gt;.asc</code></p>
 </div>
 </div>
 </div>
@@ -635,25 +624,45 @@ The live rendering now became part of my writing workflow. If you use a second s
 <div class="sect1">
 <h2 id="_epub_generation">EPUB generation</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_install_asciidoctor_epub3">Install asciidoctor-epub3</h3>
 <div class="paragraph">
-<p>The <a href="https://github.com/asciidoctor/asciidoctor-epub3">asciidoctor-epub3</a> packages makes it possible to generate EPUB3 ready outputs from your source. Run the following command to generate a basic EPUB ouput.</p>
+<p>The <a href="https://github.com/asciidoctor/asciidoctor-epub3">asciidoctor-epub3</a> packages makes it possible to generate EPUB3 ready outputs from your source. Run the following command to generate a basic EPUB ouput:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="bash">asciidoctor-epub3 example.adoc</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_wrap_the_book_in_a_spine">Wrap the book in a spine</h3>
 <div class="paragraph">
-<p>It is important to remember that you need to wrap an ebook in an outside chapter. This means that you have to add a file like to one below to wrap the book in. run the <code>asciidoctor-epup3</code> command agains this file name.</p>
+<p>It is important to remember that you need to wrap an ebook in an outside chapter(spine). This means that you have to add a file like to one below to wrap the book in. run the <code>asciidoctor-epup3</code> command agains this file name.</p>
 </div>
 <div class="listingblock">
-<div class="title">epub.asc</div>
+<div class="title">epub_wrapper.asc</div>
 <div class="content">
 <pre>= Asciidoctor EPUB3: My Setup
 Tobie Nortje
 :doctype: book
+:front-cover-image: {imagedir}/ebook_front_page.png
  include::yourbook.asc[]
  include::yourbook.asc[]</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_e_book_front_cover_image">E-book front cover image</h3>
+<div class="paragraph">
+<p>If you want to add a front cover image you can add it with the <code>front-cover-image</code> command. A usefull resource to figure out what the dimensions of this image is can be found <a href="http://www.natashafondren.com/writing/kindle-formatting/ebook-cover-design-and-optimum-size-specifications-for-amazon-kindle-bn-nook-ibookstore-and-ipad-formats/">here</a>
+The optimimum size seems to be <code>600px x 800px</code> in <code>jpg</code> format</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_e_book_avatar">E-book avatar</h3>
+<div class="paragraph">
+<p>You can also include an avatar in the beginning of each chapter by using the <code>username</code> command. It is used to resolve an avatar for the author that is displayed in the header of a chapter. The avatar image should be located at the path <code>{imagesdir}/avatars/{username}.png</code>, where <code>{username}</code> is the value of this attribute.</p>
 </div>
 </div>
 </div>
@@ -662,11 +671,26 @@ Tobie Nortje
 <h2 id="_makefile">Makefile</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For now I am using the following command to create al of the outputs</p>
+<p>I use the following <a href="http://www.ipython.org">IPython</a> script to manage the build process. It is relatively simple. Here IPython is used as a scripting language. The key issue is using the <code>!</code> before a shell command. Passing variables can be done by adding a <code>$</code> in front of the Python variable.</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>asciidoctor readme.asc &amp; asciidoctor-epub3 ebook.asc &amp; asciidoctor-pdf readme.asc</pre>
+<pre class="pygments highlight"><code data-lang="python"><span class="tok-c"># asciidoctor build script</span>
+<span class="tok-c"># run with ipython build.ipy</span>
+
+<span class="tok-n">ebook</span> 		<span class="tok-o">=</span> <span class="tok-s">&#39;ebook.asc&#39;</span>
+<span class="tok-n">mainbook</span> 	<span class="tok-o">=</span> <span class="tok-s">&#39;index.asc&#39;</span>
+<span class="tok-n">render_dir</span> 	<span class="tok-o">=</span> <span class="tok-s">&#39;output&#39;</span>
+
+<span class="tok-n">html_out</span> 	<span class="tok-o">=</span> <span class="tok-n">render_dir</span> <span class="tok-o">+</span> <span class="tok-s">&#39;/html.html&#39;</span>
+<span class="tok-n">pdf_out</span> 	<span class="tok-o">=</span> <span class="tok-n">render_dir</span> <span class="tok-o">+</span> <span class="tok-s">&#39;/pdf.pdf&#39;</span>
+<span class="tok-n">epub_out</span> 	<span class="tok-o">=</span> <span class="tok-n">render_dir</span> <span class="tok-o">+</span> <span class="tok-s">&#39;/epub.epub&#39;</span>
+
+<span class="tok-err">!</span><span class="tok-n">asciidoctor</span> <span class="tok-err">$</span><span class="tok-n">mainbook</span> 		<span class="tok-o">-</span><span class="tok-n">o</span> <span class="tok-err">$</span><span class="tok-n">html_out</span>
+
+<span class="tok-err">!</span><span class="tok-n">asciidoctor</span><span class="tok-o">-</span><span class="tok-n">epub3</span> <span class="tok-err">$</span><span class="tok-n">ebook</span> 	<span class="tok-o">-</span><span class="tok-n">o</span> <span class="tok-err">$</span><span class="tok-n">epub_out</span>
+
+<span class="tok-err">!</span><span class="tok-n">asciidoctor</span><span class="tok-o">-</span><span class="tok-n">pdf</span> <span class="tok-err">$</span><span class="tok-n">mainbook</span> 	<span class="tok-o">-</span><span class="tok-n">o</span> <span class="tok-err">$</span><span class="tok-n">pdf_out</span></code></pre>
 </div>
 </div>
 </div>
@@ -685,12 +709,29 @@ Tobie Nortje
 <div class="paragraph">
 <p>I am sure later on I would need to set some directives to change values based on the output for example changing image sizes between HTML, pdf and epub.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Social</div>
+<div class="paragraph">
+<p>Work in progress by Tobie Nortje, Revision - draft</p>
+</div>
+<div class="paragraph">
+<p>Email my at - <a href="mailto:tobie.nortje@gmail.com">tobie.nortje@gmail.com</a> or get in touch on twitter = @tooblippe</p>
+</div>
+<div class="paragraph">
+<p>Contribute on github - tooblippe</p>
+</div>
+<div class="paragraph">
+<p>Website - <a href="http://www.pythonatwork.co.za" class="bare">http://www.pythonatwork.co.za</a></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-11-28 09:18:04 SAST
+Last updated 2014-12-01 21:38:51 SAST
 </div>
 </div>
 </body>

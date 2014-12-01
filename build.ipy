@@ -1,0 +1,16 @@
+# asciidoctor build script
+# run with ipython build.ipy 
+
+ebook 		= 'ebook.asc'
+mainbook 	= 'index.asc'
+render_dir 	= 'output'
+
+html_out 	= render_dir + '/html.html'
+pdf_out 	= render_dir + '/pdf.pdf'
+epub_out 	= render_dir + '/epub.epub'
+
+!asciidoctor $mainbook 		-o $html_out
+
+!asciidoctor-epub3 $ebook 	-o $epub_out
+
+!asciidoctor-pdf $mainbook 	-o $pdf_out
