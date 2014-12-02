@@ -9,8 +9,14 @@ html_out 	= render_dir + '/html.html'
 pdf_out 	= render_dir + '/pdf.pdf'
 epub_out 	= render_dir + '/epub.epub'
 
-!asciidoctor $mainbook 		-o $html_out
+#!asciidoctor $mainbook 		
+
+!asciidoctor $mainbook 	 -o $html_out
 
 !asciidoctor-epub3 $ebook 	-o $epub_out
 
 !asciidoctor-pdf $mainbook 	-o $pdf_out
+
+#move the images directory to the output directory 
+#html can find it
+!cp -r images output/
